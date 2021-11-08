@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="BaseRatingBar">
+        <attr name="srb_numStars" format="integer" />
+        <attr name="srb_minimumStars" format="float" />
+        <attr name="srb_rating" format="float" />
+        <attr name="srb_starPadding" format="dimension" />
+        <attr name="srb_drawableEmpty" format="reference" />
+        <attr name="srb_drawableFilled" format="reference" />
+        <attr name="srb_isIndicator" format="boolean" />
+        <attr name="srb_scrollable" format="boolean" />
+        <attr name="srb_clickable" format="boolean" />
+        <attr name="srb_clearRatingEnabled" format="boolean" />
+        <attr name="srb_starWidth" format="dimension" />
+        <attr name="srb_starHeight" format="dimension" />
+        <attr name="srb_stepSize" format="float" />
+    </declare-styleable>
+
+
+    <declare-styleable name="RoundedImageView">
+        <attr name="riv_corner_radius" format="dimension" />
+        <attr name="riv_corner_radius_top_left" format="dimension" />
+        <attr name="riv_corner_radius_top_right" format="dimension" />
+        <attr name="riv_corner_radius_bottom_left" format="dimension" />
+        <attr name="riv_corner_radius_bottom_right" format="dimension" />
+        <attr name="riv_border_width" format="dimension" />
+        <attr name="riv_border_color" format="color" />
+        <attr name="riv_mutate_background" format="boolean" />
+        <attr name="riv_oval" format="boolean" />
+        <attr name="android:scaleType" />
+        <attr name="riv_tile_mode">
+            <enum name="clamp" value="0" />
+            <enum name="repeat" value="1" />
+            <enum name="mirror" value="2" />
+        </attr>
+        <attr name="riv_tile_mode_x">
+            <enum name="clamp" value="0" />
+            <enum name="repeat" value="1" />
+            <enum name="mirror" value="2" />
+        </attr>
+        <attr name="riv_tile_mode_y">
+            <enum name="clamp" value="0" />
+            <enum name="repeat" value="1" />
+            <enum name="mirror" value="2" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="ProSwipeButton">
+        <attr name="btn_text" format="string" />
+        <attr name="text_color" format="color" />
+        <attr name="bg_color" format="color" />
+        <attr name="arrow_color" format="color" />
+        <attr name="btn_radius" format="float" />
+        <attr name="text_size" format="dimension" />
+    </declare-styleable>
+
+
+    <declare-styleable name="app">
+        <attr name="bottomDragVisibleHeight" format="dimension" />
+        <attr name="bototmExtraIndicatorHeight" format="dimension" />
+    </declare-styleable>
+
+
+    <attr name="step_normal_color" format="color"/>
+    <attr name="step_activated_color" format="color"/>
+    <attr name="step_done_icon" format="reference"/>
+    <attr name="step_animation_duration" format="integer"/>
+    <attr name="step_enable_animation" format="boolean"/>
+    <attr name="step_line_color" format="color"/>
+    <attr name="step_error_highlight_color" format="color"/>
+    <attr name="step_show_summary_always" format="boolean"/>
+
+    <declare-styleable name="VerticalStepperView">
+        <attr name="step_normal_color"/>
+        <attr name="step_activated_color"/>
+        <attr name="step_done_icon"/>
+        <attr name="step_animation_duration"/>
+        <attr name="step_enable_animation"/>
+        <attr name="step_line_color"/>
+        <attr name="step_error_highlight_color"/>
+        <attr name="step_show_summary_always"/>
+    </declare-styleable>
+
+    <declare-styleable name="VerticalStepperItemView">
+        <attr name="step_index" format="integer"/>
+        <attr name="step_title" format="string"/>
+        <attr name="step_summary" format="string"/>
+        <attr name="step_summary_done" format="string"/>
+        <attr name="step_is_last" format="boolean"/>
+        <attr name="step_state" format="enum">
+            <enum name="normal" value="0"/>
+            <enum name="selected" value="1"/>
+            <enum name="done" value="2"/>
+        </attr>
+        <attr name="step_normal_color"/>
+        <attr name="step_activated_color"/>
+        <attr name="step_done_icon"/>
+        <attr name="step_animation_duration"/>
+        <attr name="step_enable_animation"/>
+        <attr name="step_line_color"/>
+        <attr name="step_error_highlight_color"/>
+        <attr name="step_show_summary_always"/>
+    </declare-styleable>
+
+    <declare-styleable name="SlideToActView">
+        <attr name="text" format="string" />
+        <attr name="text_sizee" format="dimension" />
+        <attr name="text_style" format="enum">
+            <enum name="normal" value="0" />
+            <enum name="bold" value="1" />
+            <enum name="italic" value="2" />
+        </attr>
+        <attr name="area_margin" format="dimension" />
+        <attr name="icon_margin" format="dimension" />
+        <attr name="inner_color" format="color" />
+        <attr name="outer_color" format="color" />
+        <attr name="text_colorr" format="color" />
+        <attr name="border_radius" format="dimension" />
+        <attr name="slider_height" format="dimension" />
+        <attr name="animation_duration" format="integer" />
+        <attr name="bump_vibration" format="integer" />
+        <attr name="slider_locked" format="boolean" />
+        <attr name="slider_reversed" format="boolean" />
+        <attr name="slider_icon" format="reference" />
+        <attr name="slider_icon_color" format="color" />
+        <attr name="rotate_icon" format="boolean" />
+        <attr name="animate_completion" format="boolean" />
+        <attr name="text_appearance" format="reference" />
+        <attr name="complete_icon" format="reference" />
+    </declare-styleable>
+    <declare-styleable name="SlideToActViewTheme">
+        <attr name="slideToActViewStyle" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="CameraView">
+        <attr name="aspectRatio" format="string"/>
+        <attr name="autoFocus" format="boolean"/>
+        <attr name="facing" format="enum">
+            <enum name="back" value="0"/>
+            <enum name="front" value="1"/>
+        </attr>
+        <attr name="flash" format="enum">
+            <enum name="off" value="0"/>
+            <enum name="on" value="1"/>
+            <enum name="torch" value="2"/>
+            <enum name="auto" value="3"/>
+            <enum name="redEye" value="4"/>
+        </attr>
+        <attr name="fillSpace" format="boolean"/>
+        <attr name="mode" format="enum">
+            <enum name="image" value="0"/>
+            <enum name="video" value="1"/>
+        </attr>
+        <attr name="pinchToZoom" format="boolean"/>
+        <attr name="showFocusIndicator" format="boolean"/>
+    </declare-styleable>
+    <item name="textureView" type="id"/>
+
+    <attr name="enabled" format="boolean"/>
+    <attr name="forceAspectRatio" format="boolean"/>
+
+    <attr name="switchDesign" format="enum">
+        <enum name="large" value="0"/>
+        <enum name="slim" value="1"/>
+        <enum name="android" value="2"/>
+    </attr>
+
+    <declare-styleable name="RMSwitch">
+        <attr name="checked" format="boolean"/>
+        <attr name="enabled"/>
+        <attr name="forceAspectRatio"/>
+
+        <attr name="switchDesign"/>
+
+        <attr name="switchBkgCheckedColor" format="color"/>
+        <attr name="switchBkgNotCheckedColor" format="color"/>
+
+        <attr name="switchToggleCheckedColor" format="color"/>
+        <attr name="switchToggleNotCheckedColor" format="color"/>
+
+        <attr name="switchToggleCheckedImage" format="reference"/>
+        <attr name="switchToggleNotCheckedImage" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="RMTristateSwitch">
+        <attr name="state" format="enum">
+            <enum name="left" value="0"/>
+            <enum name="middle" value="1"/>
+            <enum name="right" value="2"/>
+        </attr>
+        <attr name="enabled"/>
+        <attr name="forceAspectRatio"/>
+
+        <attr name="switchDesign"/>
+
+        <attr name="right_to_left" format="boolean"/>
+
+        <attr name="switchBkgRightColor" format="color"/>
+        <attr name="switchBkgMiddleColor" format="color"/>
+        <attr name="switchBkgLeftColor" format="color"/>
+
+        <attr name="switchToggleRightColor" format="color"/>
+        <attr name="switchToggleMiddleColor" format="color"/>
+        <attr name="switchToggleLeftColor" format="color"/>
+
+        <attr name="switchToggleRightImage" format="reference"/>
+        <attr name="switchToggleMiddleImage" format="reference"/>
+        <attr name="switchToggleLeftImage" format="reference"/>
+    </declare-styleable>
+
+
+
+</resources>

@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:shimmer="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/livo_bg_color">
+
+
+        <com.livo.nuo.recyclerview_refresh.RecyclerRefreshLayout
+            android:id="@+id/refreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/livo_bg_color">
+
+
+                <RelativeLayout
+                    android:id="@+id/rlSearchMain"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:padding="10dp">
+
+
+                    <RelativeLayout
+                        android:id="@+id/rlSearch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toStartOf="@+id/imgNotification"
+                        android:background="@drawable/white_fill_black_10_border"
+                        android:padding="10dp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imgSearch"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/search"
+                            android:tint="@color/livo_black_10_opacity" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvSearch"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_toEndOf="@+id/imgSearch"
+                            android:background="@null"
+                            android:fontFamily="@font/barlow_regular"
+                            android:hint="@string/search"
+                            android:textColorHint="@color/black_40_opacity"
+                            android:textColor="@color/black"
+                            android:textSize="14dp" />
+
+                    </RelativeLayout>
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imgNotification"
+                        android:layout_width="27dp"
+                        android:layout_height="27dp"
+                        android:layout_marginStart="19dp"
+                        android:layout_marginTop="17dp"
+                        android:layout_marginEnd="17dp"
+                        android:transitionName="fade"
+                        android:layout_toStartOf="@+id/imgFilter"
+                        android:src="@drawable/notification_bell" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imgFilter"
+                        android:layout_width="27dp"
+                        android:layout_height="27dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="17dp"
+                        android:layout_marginEnd="5dp"
+                        app:srcCompat="@drawable/filter" />
+
+
+                </RelativeLayout>
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/rlSearchMain">
+
+
+                    <RelativeLayout
+                        android:id="@+id/rlMM"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <RelativeLayout
+                            android:id="@+id/rlTopMain"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/whit_round_shape_top_square"
+                            android:paddingStart="0dp"
+                            android:paddingTop="5dp"
+                            android:paddingEnd="0dp"
+                            android:paddingBottom="5dp">
+
+
+                            <RelativeLayout
+                                android:id="@+id/rlBanner"
+                                android:layout_width="match_parent"
+                                android:layout_marginTop="10dp"
+                                android:layout_height="wrap_content">
+
+
+                                <com.facebook.shimmer.ShimmerFrameLayout
+                                    android:id="@+id/shimmerViewbanner"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:visibility="visible"
+                                    shimmer:duration="800">
+
+
+                                    <com.livo.nuo.lib.roundImageView.RoundedImageView
+                                        android:id="@+id/imgProductImagex"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:alpha="0.2"
+                                        android:scaleType="fitXY"
+                                        android:src="@android:color/darker_gray"
+                                        app:riv_corner_radius="10dp" />
+
+
+                                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                                <androidx.viewpager.widget.ViewPager
+                                    android:id="@+id/viewpager1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="150dp"
+                                    android:clipToPadding="false"
+                                    android:visibility="visible">
+
+                                </androidx.viewpager.widget.ViewPager>
+
+
+                                <com.google.android.material.tabs.TabLayout
+                                    android:id="@+id/tabsLayout"
+                                    android:layout_width="50dp"
+                                    android:layout_height="20dp"
+                                    android:layout_below="@+id/viewpager1"
+                                    android:layout_centerHorizontal="true"
+                                    app:tabBackground="@drawable/tab_selector"
+                                    app:tabGravity="center"
+                                    app:tabIndicatorHeight="0dp" />
+
+                            </RelativeLayout>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/rlBottomMain"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_below="@+id/rlTopMain">
+
+
+                            <com.facebook.shimmer.ShimmerFrameLayout
+                                android:id="@+id/shimmerViewContainer"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:visibility="visible"
+                                shimmer:duration="800">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <include
+                                        android:id="@+id/v1"
+                                        layout="@layout/shimmer_my_listing_layout" />
+
+                                    <include
+                                        android:id="@+id/v2"
+                                        layout="@layout/shimmer_my_listing_layout" />
+
+                                    <include
+                                        android:id="@+id/v3"
+                                        layout="@layout/shimmer_my_listing_layout" />
+
+                                </LinearLayout>
+
+
+                            </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rvListing"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+
+                            <ProgressBar
+                                android:id="@+id/progressbar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_gravity="center"
+                                android:visibility="gone" />
+
+                            <RelativeLayout
+                                android:id="@+id/rlNoDataFound"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_centerInParent="true"
+                                android:layout_centerVertical="true"
+                                android:gravity="center_vertical"
+                                android:visibility="visible">
+
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/imgNoDataFound"
+                                    android:layout_width="150dp"
+                                    android:layout_height="150dp"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_centerVertical="false"
+                                    android:layout_marginTop="10dp"
+                                    android:src="@drawable/ic_no_listing" />
+
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tvNoDataFound"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/imgNoDataFound"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="10dp"
+                                    android:fontFamily="@font/barlow_bold"
+                                    android:text="@string/no_listing_found"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/livo_black_10_opacity"
+                                    android:textSize="18sp" />
+
+
+                                <com.loopeer.shadow.ShadowView
+                                    android:id="@+id/svMakeListing"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/tvNoDataFound"
+                                    android:layout_marginStart="7dp"
+                                    android:layout_marginEnd="7dp"
+                                    app:cornerRadius="5dp"
+                                    app:shadowColor="@color/livo_light_red"
+                                    app:shadowDx="0"
+                                    app:shadowDy="4"
+                                    app:shadowMargin="20sp"
+                                    app:shadowRadius="20dp">
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/tvMakeListing"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:background="@drawable/button_red_rippel_effect"
+                                        android:fontFamily="@font/barlow_bold"
+                                        android:letterSpacing="0.02"
+                                        android:padding="10dp"
+                                        android:text="@string/make_new_listing"
+                                        android:textAlignment="center"
+                                        android:textColor="@color/livo_light_white"
+                                        android:textSize="15dp" />
+
+
+                                </com.loopeer.shadow.ShadowView>
+
+                            </RelativeLayout>
+
+
+                        </RelativeLayout>
+
+
+                    </RelativeLayout>
+
+
+                </androidx.core.widget.NestedScrollView>
+
+
+            </RelativeLayout>
+
+
+        </com.livo.nuo.recyclerview_refresh.RecyclerRefreshLayout>
+
+
+    </RelativeLayout>
+</RelativeLayout>

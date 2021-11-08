@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+   >
+
+    <RelativeLayout
+        android:id="@+id/rlMain"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/rlMainInternal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgCountryCodeImage"
+                android:layout_width="45dp"
+                android:layout_height="35dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_logosvg"
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvCountryName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/imgCountryCodeImage"
+                android:fontFamily="@font/barlow_semibold"
+                android:text="User Name"
+                android:textColor="@color/black_border_color"
+                android:textSize="14dp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvCountryCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvCountryName"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/imgCountryCodeImage"
+                android:fontFamily="@font/barlow_regular"
+                android:text="User Name"
+                android:textColor="@color/black_border_color"
+                android:textSize="14dp" />
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgTick"
+                android:visibility="gone"
+                android:src="@drawable/check"
+                android:tint="@color/navy_blue"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_width="18dp"
+                android:layout_height="18dp"/>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/tvCountryCode"
+                android:layout_marginTop="10dp"
+                android:background="@color/border_color" />
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        >
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="15dp">
+
+            <com.livo.nuo.lib.roundImageView.RoundedImageView
+                android:id="@+id/imgProductImage"
+                android:alpha="0.2"
+                android:src="@android:color/darker_gray"
+                app:riv_corner_radius="5dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"/>
+
+
+            <com.livo.nuo.lib.roundImageView.RoundedImageView
+                android:id="@+id/imgUserImage"
+                android:layout_toEndOf="@+id/imgProductImage"
+                android:layout_marginStart="15dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:alpha="0.2"
+                android:src="@android:color/darker_gray"
+                app:riv_corner_radius="15dp"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvUserName"
+                android:layout_toEndOf="@+id/imgUserImage"
+                android:text="                           "
+                android:layout_marginTop="3dp"
+                android:fontFamily="@font/barlow_bold"
+                android:textSize="14sp"
+                android:layout_marginStart="10dp"
+                android:alpha="0.2"
+                android:backgroundTint="@android:color/darker_gray"
+                android:background="@drawable/white_round_shape"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTime"
+                android:text="            "
+                android:layout_marginTop="3dp"
+                android:layout_alignParentEnd="true"
+                android:fontFamily="@font/barlow_bold"
+                android:textSize="13sp"
+                android:alpha="0.2"
+                android:backgroundTint="@android:color/darker_gray"
+                android:background="@drawable/white_round_shape"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/livo_black_45_opacity"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"/>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLastMessage"
+                android:layout_below="@+id/imgUserImage"
+                android:layout_toEndOf="@+id/imgProductImage"
+                android:text=""
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/barlow_medium"
+                android:textStyle="normal"
+                android:textSize="13sp"
+                android:layout_marginStart="15dp"
+                android:textColor="@color/livo_black_40_opacity"
+                android:layout_width="match_parent"
+                android:alpha="0.2"
+                android:backgroundTint="@android:color/darker_gray"
+                android:background="@drawable/white_round_shape"
+                android:layout_height="15dp"/>
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</layout>

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rlMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/livo_bg_color">
+
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/vv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/svBottom"
+            android:layout_marginTop="25dp" />
+
+
+        <com.loopeer.shadow.ShadowView
+            android:id="@+id/svBottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:elevation="5dp"
+            app:backgroundColor="@color/white"
+            app:cornerRadiusTL="15dp"
+            app:cornerRadiusTR="15dp"
+            app:shadowColor="@color/livo_bg_color"
+            app:shadowDx="0"
+            app:shadowDy="3"
+            app:shadowRadius="20dp">
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottomBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:gravity="center"
+                    android:paddingBottom="7dp">
+
+
+                    <LinearLayout
+                        android:id="@+id/rlHome"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imgHome"
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
+
+                            android:src="@drawable/home_inactive" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvHome"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:fontFamily="@font/barlow_bold"
+                            android:text="@string/home"
+                            android:textAlignment="center"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="12.8dp"
+                            android:visibility="gone" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/rlListing"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imgListing"
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
+                            android:src="@drawable/listings_inactive" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvListing"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:fontFamily="@font/barlow_bold"
+                            android:text="@string/listing"
+                            android:textAlignment="center"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="12.8dp"
+                            android:visibility="gone" />
+
+                    </LinearLayout>
+
+
+                    <RelativeLayout
+                        android:id="@+id/rlCreateListing"
+                        android:layout_width="95dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imgCreateListing"
+                            android:layout_width="95dp"
+                            android:layout_height="65dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="-10dp"
+                            android:src="@drawable/bottom_center_icon" />
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:id="@+id/rlMessages"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imgMessages"
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
+                            android:src="@drawable/chat_inactive" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvMessages"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/barlow_bold"
+                            android:text="@string/chats"
+                            android:textAlignment="center"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="12.8dp"
+                            android:visibility="gone" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/rlProfile"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imgProfile"
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
+                            android:src="@drawable/profile_inactive" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvProfile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:fontFamily="@font/barlow_bold"
+                            android:text="@string/profile"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="12.8dp"
+                            android:visibility="gone" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+
+        </com.loopeer.shadow.ShadowView>
+
+    </RelativeLayout>
+
+</RelativeLayout>

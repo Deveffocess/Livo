@@ -1,0 +1,173 @@
+<resources>
+    <string name="app_name">Livo</string>
+
+    <string name="noConnection">Intet internet</string>
+    <string name="turnOnInternet">Din enhed har ikke forbindelse til internet. Tænd for din internetforbindelse</string>
+    <string name="mobileData">Mobildata</string>
+    <string name="wifi">trådløst internet</string>
+    <string name="you_are_offline_please_check_your_internet_connection">Du er offline. Kontroller din internetforbindelse</string>
+    <string name="enter_secure_code" translatable="false">Indtast sikker kode</string>
+    <string name="enter_phone_number">Indtast telefonnummer</string>
+    <string name="login">Log på</string>
+    <string name="register">Tilmeld</string>
+    <string name="send_secure_code">Send sikker kode</string>
+    <string name="search">Søg</string>
+    <string name="denmark">Denmark</string>
+    <string name="sweden">Sverige</string>
+    <string name="choose_language">Vælg sprog</string>
+    <string name="select_country_code">vælg landekode</string>
+    <string name="apply">ansøge</string>
+    <string name="resend_otp">Send OTP igen</string>
+    <string name="englishTitle">engelsk</string>
+    <string name="denish">Fornægt</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="transporter_application">Transporteransøgning</string>
+    <string name="you_can_also_join_our_transporter_force_and_earn_with_livo_before_you_submit_your_application_make">Du kan også deltage i vores transportstyrke og tjene med Livo. Før du indsender din ansøgning, skal du gøre det</string>
+    <string name="submit">Indsend</string>
+    <string name="share">Del</string>
+    <string name="application_settings">Applikationsindstillinger</string>
+    <string name="faqs">Ofte stillede spørgsmål</string>
+    <string name="help_amp_support"><![CDATA[Hjælp og support]]></string>
+    <string name="payment_amp_cashbacks"><![CDATA[Betalinger & Cashbacks]]></string>
+    <string name="refer_amp_earn"><![CDATA[Henvis og tjen]]></string>
+    <string name="first_name">Fornavn *</string>
+    <string name="last_name">Efternavn *</string>
+    <string name="email">E-mail *</string>
+    <string name="date_of_birth_dd_mm_yy">Fødselsdato: DD / MM / ÅÅÅÅ *</string>
+    <string name="i_am">Jeg er</string>
+    <string name="female">Kvinde</string>
+    <string name="other">Andet</string>
+    <string name="male">Han</string>
+    <string name="user_type">Brugertype</string>
+    <string name="business">Forretning</string>
+    <string name="individual">Individuel</string>
+    <string name="phone_number">Telefonnummer *</string>
+    <string name="driver_info">Driverinfo</string>
+    <string name="select_vehicle_type">Vælg køretøjstype</string>
+    <string name="license_plate_number">Nummer på nummerplade</string>
+    <string name="enter_license_plate_no">Indtast nummerplade nr.</string>
+    <string name="driver_license_number">Kørekortnummer *</string>
+    <string name="cpr_personal_id_number">HLR (personligt ID-nummer) *</string>
+    <string name="enter_cpr_personal_id_number">Indtast HLR (personligt ID-nummer)</string>
+    <string name="bank_account_info">Bankkontooplysninger</string>
+
+    <string name="registration_number">Registreringsnummer *</string>
+    <string name="enter_registration_number">Indtast registreringsnummer</string>
+    <string name="bank_account_number">Bankkontonummer *</string>
+    <string name="logout">Log ud</string>
+    <string name="about_you">Om dig</string>
+    <string name="tell_us_a_little_about_you">Fortæl os lidt om dig ...</string>
+    <string name="submit_application">Send ansøgningen</string>
+    <string name="cancellation">Aflysning</string>
+    <string name="frequently_asked_questions">Ofte stillede spørgsmål</string>
+    <string name="profile_settings">Profilindstillinger</string>
+    <string name="your_referral_code">DIN HENVISNINGSKODE</string>
+    <string name="copy_to_clipboard">Kopier til udklipsholder</string>
+    <string name="enter_referral_code">INDGIV HENVISNINGSKODE</string>
+    <string name="enter_here">Gå ind her</string>
+    <string name="about_referral_and_earn_program">OM HENVISNINGS- OG OPTJENINGSPROGRAM</string>
+    <string name="india">Indien</string>
+    <string name="show_all">VIS ALT</string>
+    <string name="terms_amp_conditions"><![CDATA[Vilkår og Betingelser]]></string>
+    <string name="privacy_policy">Fortrolighedspolitik</string>
+    <string name="refunds">Refusioner</string>
+    <string name="legal_faq">JURIDISKE FAQ</string>
+    <string name="referral_code_applied">Henvisningskode anvendt</string>
+
+    <string name="lbl_set_profile_photo">Upload billede</string>
+    <string name="lbl_take_camera_picture">Kamera</string>
+    <string name="lbl_choose_from_gallery">Galleri</string>
+    <string name="go_to_settings">Gå til indstillinger</string>
+    <string name="dialog_permission_title">Giv tilladelser</string>
+    <string name="after_successfully_changing_your_number_you_ll_be_logged_out_application_and_will_require_you_login_with_your_new_number">Når du har ændret dit nummer, bliver du logget ud af applikationen og kræver login med dit nye nummer.</string>
+    <string name="dialog_permission_message">Denne app har brug for tilladelse til at bruge denne funktion. Du kan give dem i appindstillinger.</string>
+    <string name="resend_otp_in">"Send OTP igen"</string>
+    <string name="seconds">sekunder</string>
+    <string name="years_old">år gammel</string>
+    <string name="pending">Verserende</string>
+    <string name="applied">Anvendt</string>
+    <string name="approved">godkendt</string>
+    <string name="general_issues">Generelle problemer</string>
+    <string name="change">Change</string>
+    <string name="upload_driver_nlicense">Upload Driver \nLicense</string>
+
+
+    <string name="upload_vehicle_nphoto">Upload Vehicle \nPhoto</string>
+    <string name="hatchback_car">HatchBack Car</string>
+    <string name="_0_500">0/500</string>
+    <string name="product_details">Product Details</string>
+    <string name="product_title">Product Title</string>
+    <string name="height">Height</string>
+    <string name="depth">Depth</string>
+    <string name="width">Width</string>
+    <string name="weight">Weight</string>
+    <string name="pickup_location">Pickup Location</string>
+    <string name="address_note">Address Note</string>
+    <string name="pickup_date">Pickup Date</string>
+    <string name="api_key">AIzaSyBsWh4C2AF5Ns7EW_yLBYZI1g7fCU--2DU</string>
+    <string name="next">Next</string>
+    <string name="pickup_address">Pickup Address</string>
+    <string name="drop_off_address">Drop-Off Address</string>
+    <string name="drop_off_location">Drop-Off Location</string>
+    <string name="drop_off_date">Drop-Off date</string>
+    <string name="amount">Amount</string>
+    <string name="tax1">Tax 1</string>
+    <string name="coupon_discount">Coupon Discount</string>
+    <string name="referral_code_is_invalid">Referral code is invalid</string>
+    <string name="skip">Skip</string>
+    <string name="listing_published_successfully">Listing published \nsuccessfully</string>
+    <string name="product_images">Product Images</string>
+    <string name="publish_listing">Publish Listing</string>
+    <string name="select">Select</string>
+    <string name="selected">Selected</string>
+    <string name="no_listing_found">Ingen fortegnelse fundet</string>
+    <string name="make_new_listing">Lav en ny fortegnelse</string>
+    <string name="received_offers_0">RECEIVED OFFERS : 0</string>
+    <string name="details">Details</string>
+    <string name="report">Report</string>
+    <string name="_2_people_needed">2 PERSONER NØDVENDIG</string>
+    <string name="pick_up_from">Pick-Up From</string>
+    <string name="drop_off_at">Drop-Off At</string>
+
+
+    <!-- Dashboard -->
+    <string name="home">Hjem</string>
+    <string name="listing">Notering</string>
+    <string name="chats">Chats</string>
+    <string name="profile">Profil</string>
+    <string name="chat">Snak</string>
+    <string name="message">Besked</string>
+    <string name="phone">telefon</string>
+    <string name="youve_recieved">Du har modtaget</string>
+    <string name="offers">tilbud</string>
+
+    <!-- MyListing Filter -->
+    <string name="data_modified">Data ændret</string>
+    <string name="alphabetically">Alfabetisk</string>
+    <string name="published">Udgivet</string>
+    <string name="ongoing">Igangværende</string>
+    <string name="completed">Afsluttet</string>
+    <string name="suspended">Suspenderet</string>
+    <string name="expired">Udløbet</string>
+    <string name="sender">Afsender</string>
+    <string name="transpoter">Transportør</string>
+    <string name="show_only_my_offers">Vis kun mine tilbud</string>
+    <string name="reset_all">Genstart alt</string>
+    <string name="SORT_BY">SORTER EFTER</string>
+    <string name="FILTER">FILTER</string>
+
+
+    <!-- Listing Filter -->
+    <string name="nearest_pickup">Nærmeste afhentning</string>
+    <string name="highest_price">Højeste pris</string>
+    <string name="latest">Seneste</string>
+    <string name="oldest">Ældste</string>
+    <string name="FILTERS">FILTRE</string>
+
+    <!-- Product Detail -->
+    <string name="send_request">Send anmodning</string>
+
+    <string name="notifications">Meddelelser</string>
+    <string name="process">Behandle</string>
+
+</resources>

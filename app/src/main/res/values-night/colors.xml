@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FF0000</color>
+    <color name="warning">#FF9D00</color>
+    <color name="danger">#c80000</color>
+    <color name="black_20_opacity">#33000000</color>
+    <color name="success">#00c853</color>
+    <color name="black_40_opacity">#66000000</color>
+    <color name="livo_blue">#380E79</color>
+
+    <color name="colorBgWhite">#FFFFFF</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="livo_black_10_opacity">#1A000000</color>
+</resources>
