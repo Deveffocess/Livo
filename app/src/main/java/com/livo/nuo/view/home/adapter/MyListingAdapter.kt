@@ -25,20 +25,26 @@ import com.livo.nuo.utility.AppUtils
 import com.livo.nuo.utility.MyAppSession
 
 import android.graphics.Movie
+import android.graphics.Typeface
 import android.media.Image
+import android.os.Build
 import android.util.Log
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.card.MaterialCardView
+import com.livo.nuo.view.ongoing.ListingOngoingStateActivity
+import com.livo.nuo.view.ongoing.TransporterOffersActivity
+import com.livo.nuo.view.product.ProductDetailActivity
 
 
 class MyListingAdapter(
     private var currAtivity: Activity,
-    private var list: ArrayList<ProductModel>, private var from: Int
+    private var list: ArrayList<ProductModel>, private var from: Int, private var userType:String,private var user_type:String
 ) :
     RecyclerView.Adapter<MyListingAdapter.ViewHolder>() {
 
@@ -86,6 +92,7 @@ fun clear() {
 }
 
 
+@RequiresApi(Build.VERSION_CODES.M)
 override fun onBindViewHolder(holder: ViewHolder, position: Int) {
     val model = list[position]
 
@@ -94,8 +101,8 @@ override fun onBindViewHolder(holder: ViewHolder, position: Int) {
        holder.rlBottomLayout.visibility=View.GONE
 
        holder.tvRecievedOffer
-       if(model.status.equals("Suspended"))
-           holder.mcvOfferCell.strokeColor =currAtivity.resources.getColor(R.color.danger)
+       if(model.status.equals("Suspended")){
+           holder.mcvOfferCell.strokeColor =currAtivity.resources.getColor(R.color.danger)}
        else if(model.status.equals("Expired"))
            holder.mcvOfferCell.strokeColor =currAtivity.resources.getColor(R.color.black_20_opacity)
 
@@ -110,7 +117,7 @@ override fun onBindViewHolder(holder: ViewHolder, position: Int) {
            holder.imgTransporterImage.visibility=View.GONE
            holder.tvTransporterStatus.visibility=View.GONE
            holder.tvTransporterName.visibility=View.GONE
-
+           holder.imgForward.visibility=View.GONE
            holder.tvRecievedOffer.text=model.biddings.toString()
 
        }
@@ -122,6 +129,8 @@ override fun onBindViewHolder(holder: ViewHolder, position: Int) {
            holder.imgTransporterImage.visibility=View.VISIBLE
            holder.tvTransporterStatus.visibility=View.VISIBLE
            holder.tvTransporterName.visibility=View.VISIBLE
+
+           holder.imgForward.visibility=View.GONE
 
            holder.tvTransporterName.text=model.user_details.first_name+" "+model.user_details.last_name
            holder.tvTransporterStatus.text=model.user_details.status_text
@@ -182,20 +191,118 @@ override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
    else if(model.status.equals("Published"))
    {
+       holder.rlBottomLayout.visibility = View.GONE
+
+       holder.imgTransporterImage.visibility = View.GONE
+       holder.tvTransporterStatus.visibility = View.GONE
+       holder.tvTransporterName.visibility = View.GONE
+
+       var colo=model.color_status
+
+       if (userType.equals("transporter"))
+       {
+           if(user_type.equals("sender"))
+           {
+               holder.mcvOfferCell.strokeColor =
+                   currAtivity.resources.getColor(R.color.black_40_opacity)
+
+               holder.tvRecievedOfferlabel.visibility = View.VISIBLE
+               holder.tvRecievedOffer.visibility = View.VISIBLE
+               holder.tvRecievedOfferRecievedLabel.visibility = View.VISIBLE
+
+               holder.tvRecievedOffer.text = model.biddings.toString()
+           }
+           else {
+
+               holder.tvRecievedOfferlabel.text = model.bidding_status.title
+               holder.tvRecievedOfferRecievedLabel.text = " " + model.bidding_status.sub_title
+               holder.tvRecievedOffer.visibility = View.GONE
+               if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                   holder.tvRecievedOfferRecievedLabel.typeface = currAtivity.resources.getFont(R.font.barlow_regular)
+               }
+
+               if (colo.equals("Black : 100%"))
+                   holder.mcvOfferCell.strokeColor = currAtivity.resources.getColor(R.color.black)
+
+           }
+       }
+       else {
+
+
+           holder.mcvOfferCell.strokeColor =
+               currAtivity.resources.getColor(R.color.black_40_opacity)
+
+           holder.tvRecievedOfferlabel.visibility = View.VISIBLE
+           holder.tvRecievedOffer.visibility = View.VISIBLE
+           holder.tvRecievedOfferRecievedLabel.visibility = View.VISIBLE
+
+           holder.tvRecievedOffer.text = model.biddings.toString()
+       }
+   }
+
+   else if(model.status.equals("Closed"))
+   {
 
        holder.rlBottomLayout.visibility=View.GONE
        holder.mcvOfferCell.strokeColor =currAtivity.resources.getColor(R.color.black_40_opacity)
+       holder.tvRecievedOffer.visibility=View.GONE
 
-           holder.tvRecievedOfferlabel.visibility=View.VISIBLE
-           holder.tvRecievedOffer.visibility=View.VISIBLE
-           holder.tvRecievedOfferRecievedLabel.visibility=View.VISIBLE
 
-           holder.imgTransporterImage.visibility=View.GONE
-           holder.tvTransporterStatus.visibility=View.GONE
-           holder.tvTransporterName.visibility=View.GONE
+       holder.tvRecievedOfferlabel.visibility=View.VISIBLE
+       holder.tvRecievedOfferlabel.text=model.bidding_status.title
 
-           holder.tvRecievedOffer.text=model.biddings.toString()
+       holder.tvRecievedOfferRecievedLabel.visibility=View.VISIBLE
+       holder.tvRecievedOfferRecievedLabel.text=" "+model.bidding_status.sub_title
+       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+           holder.tvRecievedOfferRecievedLabel.typeface = currAtivity.resources.getFont(R.font.barlow_regular)
+       }
+
+       holder.imgTransporterImage.visibility=View.GONE
+       holder.tvTransporterStatus.visibility=View.GONE
+       holder.tvTransporterName.visibility=View.GONE
+       holder.imgForward.visibility=View.GONE
+       holder.rlTransporter.isEnabled=false
+
+       holder.tvRecievedOffer.text=model.biddings.toString()
    }
+
+
+    holder.rlProcess.setOnClickListener({
+        var i = Intent(currAtivity, ListingOngoingStateActivity::class.java)
+        i.putExtra("id", model.approved_bid_id)
+        currAtivity.startActivity(i)
+    })
+
+
+    holder.mcvOfferCell.setOnClickListener({
+        if(model.status.equals("Published"))
+        {
+            if(userType.equals("sender")) {
+                if (model.biddings.toString().equals("0")) {
+                    var i = Intent(currAtivity, ProductDetailActivity::class.java)
+                    i.putExtra("id", model.id.toString())
+                    currAtivity.startActivity(i)
+                } else {
+                    var i = Intent(currAtivity, TransporterOffersActivity::class.java)
+                    i.putExtra("id", model.id)
+                    currAtivity.startActivity(i)
+                }
+            }
+            else{
+                var i = Intent(currAtivity, ListingOngoingStateActivity::class.java)
+                i.putExtra("id", model.offer_id)
+                currAtivity.startActivity(i)
+            }
+        }
+
+        if(model.status.equals("Ongoing"))
+        {
+            var i = Intent(currAtivity, ListingOngoingStateActivity::class.java)
+            i.putExtra("id", model.approved_bid_id)
+            currAtivity.startActivity(i)
+        }
+
+    })
 
 
 
@@ -243,9 +350,17 @@ override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         }
 
     })
-        .load(model.listing_images).placeholder(currAtivity.getDrawable(R.drawable.grey_round_shape)).
+        .load(model.listing_image).placeholder(currAtivity.getDrawable(R.drawable.grey_round_shape)).
         error(currAtivity.getDrawable(R.drawable.grey_round_shape)).
         into(holder.imgProductImage)
+
+    holder.rlBottomLayout.setOnClickListener({})
+
+    holder.rlTransporter.setOnClickListener({
+        var i=Intent(currAtivity, ProductDetailActivity::class.java)
+        i.putExtra("id",model.id.toString())
+        currAtivity.startActivity(i)
+    })
 
 
 }
@@ -268,7 +383,8 @@ inner class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
     var tvRecievedOfferlabel: TextView
     var imgshimmerImage:ImageView
     var tvRecievedOfferRecievedLabel: TextView
-
+    var rlTransporter:RelativeLayout
+    var rlProcess:LinearLayout
     var mcvOfferCell:MaterialCardView
 
     init {
@@ -287,6 +403,8 @@ inner class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         imgshimmerImage=ItemView.findViewById(R.id.imgshimmerImage)
         tvRecievedOfferRecievedLabel = ItemView.findViewById(R.id.tvRecievedOfferRecievedLabel)
         mcvOfferCell=ItemView.findViewById(R.id.mcvOfferCell)
+        rlTransporter=ItemView.findViewById(R.id.rlTransporter)
+        rlProcess=ItemView.findViewById(R.id.rlProcess)
 
     }
 }

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/livo_bg_color">
+
+
+        <RelativeLayout
+            android:id="@+id/rlHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+           android:padding="20dp"
+            android:background="@drawable/top_square_bottom_round_white_shape">
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgBack"
+                android:layout_marginStart="15dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/backward"
+                android:layout_width="20dp"
+                android:layout_height="20dp"/>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLabel"
+                android:layout_centerVertical="true"
+                android:text="@string/frequently_asked_questions"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="5dp"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:fontFamily="@font/barlow_bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlFaqs"
+            android:layout_below="@+id/rlHeader"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:background="@drawable/white_round_shape"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+
+            <RelativeLayout
+                android:id="@+id/rlFirstHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvLegalFAQ"
+                    android:text="@string/legal_faq"
+                    android:layout_marginTop="5dp"
+                    android:textAlignment="viewStart"
+                    android:fontFamily="@font/barlow_bold"
+                    android:textColor="@color/livo_black_20_opacity"
+                    android:letterSpacing="0.02"
+                    android:textSize="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvQuestions"
+                android:layout_below="@+id/rlFirstHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</layout>

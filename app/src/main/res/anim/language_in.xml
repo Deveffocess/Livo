@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <scale
+        android:duration="100"
+        android:fromXScale=".9"
+        android:fromYScale=".9"
+        android:pivotX="80%"
+        android:pivotY="80%"
+        android:toXScale="1.0"
+        android:toYScale="1.0"
+        android:startOffset="1000"
+        >
+    </scale>
+
+    <!--<scale
+        android:duration="1800"
+        android:fromXScale=".9"
+        android:fromYScale=".9"
+        android:pivotX="20%"
+        android:pivotY="80%"
+        android:toXScale="1.0"
+        android:toYScale="1.0" />-->
+
+
+
+</set>

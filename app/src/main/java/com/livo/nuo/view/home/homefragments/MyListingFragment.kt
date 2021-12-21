@@ -60,6 +60,8 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.core.view.ViewCompat
 
 import com.livo.nuo.MainActivity
+import com.livo.nuo.view.home.search.SearchActivity
+import com.livo.nuo.view.listing.NewListingActivity
 
 
 class MyListingFragment : Fragment() {
@@ -80,14 +82,18 @@ class MyListingFragment : Fragment() {
     lateinit var refreshLayout:RecyclerRefreshLayout
     lateinit var tabsLayout:TabLayout
     lateinit var imgFilter:ImageView
-    lateinit var rlNoDataFound:RelativeLayout
+    lateinit var rlNoDataFound:LinearLayout
     lateinit var rlBottomMain:RelativeLayout
     lateinit var imgNotification:ImageView
+    lateinit var tvMakeListing:TextView
+
+    lateinit var rlSearch:RelativeLayout
 
     var userType=""
     var pageNumber=0
     var height=0
     var width=0
+
 
     var MyListingFragment="MyListingFragment"
 
@@ -119,6 +125,8 @@ class MyListingFragment : Fragment() {
         rlNoDataFound=root.findViewById(R.id.rlNoDataFound)
         rlBottomMain=root.findViewById(R.id.rlBottomMain)
         imgNotification=root.findViewById(R.id.imgNotification)
+        rlSearch=root.findViewById(R.id.rlSearch)
+        tvMakeListing=root.findViewById(R.id.tvMakeListing)
         rlNoDataFound.visibility = View.GONE
 
 
@@ -212,6 +220,15 @@ class MyListingFragment : Fragment() {
 
         })
 
+        rlSearch.setOnClickListener({
+
+            val intent = Intent(currActivity!!, SearchActivity::class.java)
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                currActivity!!, rlSearch, ViewCompat.getTransitionName(rlSearch)!!
+            )
+            startActivity(intent, options.toBundle())
+        })
+
 
 
         pref = currActivity!!.getSharedPreferences(MyListingFragment,0)
@@ -244,6 +261,10 @@ class MyListingFragment : Fragment() {
             editor.commit()
         }
 
+        tvMakeListing.setOnClickListener({
+            var i=Intent(currActivity,NewListingActivity::class.java)
+            startActivity(i)
+        })
 
 //        shimmerViewbanner.visibility = View.VISIBLE
 //        viewpager1.visibility = View.GONE
@@ -268,6 +289,7 @@ class MyListingFragment : Fragment() {
                 var sort_by=pref.getString("sort_by","")
                 var sort_type=pref.getString("sort_type","")
                 var my_bids=pref.getString("my_bids","")
+                var user_type=pref.getString("user_type","")
                 var filter_pref =pref.getString("filter","")
 
 
@@ -275,11 +297,11 @@ class MyListingFragment : Fragment() {
                 jsonObject.addProperty("page", currentPage)
                 jsonObject.addProperty("sort_by", sort_by)
                 jsonObject.addProperty("sort_type", sort_type)
-                jsonObject.addProperty("user_type", "sender")
+                jsonObject.addProperty("user_type", user_type)
                 jsonObject.add("filter", filterarray)
                 jsonObject.addProperty("my_bids", my_bids)
 
-                //Log.e("api",jsonObject.toString())
+                Log.e("api",jsonObject.toString())
 
                 it.getUserListings(jsonObject)
 
@@ -453,6 +475,8 @@ class MyListingFragment : Fragment() {
         var sort_by=pref.getString("sort_by","")
         var sort_type=pref.getString("sort_type","")
         var filter_pref =pref.getString("filter","")
+        var user_type=pref.getString("user_type","")
+        var my_bids=pref.getString("my_bids","")
         val editor = pref.edit()
 
 
@@ -464,15 +488,75 @@ class MyListingFragment : Fragment() {
             bottomSheetDashboardFilterBinding.tvExpired.setBackground(currActivity!!.getDrawable(R.drawable.blue_round_shape_45_opacity))
         }
         if (filter_pref?.contains("Completed")== true) {
+            bottomSheetDashboardFilterBinding.tvCompletedTransporter.setBackground(currActivity!!.getDrawable(R.drawable.blue_round_shape_45_opacity))
             bottomSheetDashboardFilterBinding.tvCompleted.setBackground(currActivity!!.getDrawable(R.drawable.blue_round_shape_45_opacity))
         }
         if (filter_pref?.contains("Suspended")== true){
+            bottomSheetDashboardFilterBinding.tvSuspendedTransporter.setBackground(currActivity!!.getDrawable(R.drawable.blue_round_shape_45_opacity))
             bottomSheetDashboardFilterBinding.tvSuspended.setBackground(currActivity!!.getDrawable(R.drawable.blue_round_shape_45_opacity))
         }
         if (filter_pref?.contains("Ongoing")== true) {
+            bottomSheetDashboardFilterBinding.tvOngoingTranspoter.setBackground(currActivity!!.getDrawable(R.drawable.blue_round_shape_45_opacity))
             bottomSheetDashboardFilterBinding.tvOngoing.setBackground(currActivity!!.getDrawable(R.drawable.blue_round_shape_45_opacity))
         }
-        Log.e("kk", filterarray.toString())
+
+
+        if(userType.equals("sender"))
+        {
+            bottomSheetDashboardFilterBinding.cvUsertypeSelection.visibility=View.GONE
+            bottomSheetDashboardFilterBinding.tvTranspoter.setTextColor(Color.BLACK)
+            bottomSheetDashboardFilterBinding.tvTranspoter.setBackground(currActivity!!.getDrawable(R.drawable.white_round_shape_5))
+            bottomSheetDashboardFilterBinding.tvSender.setTextColor(Color.parseColor("#888888"))
+            bottomSheetDashboardFilterBinding.tvSender.setBackground(currActivity!!.getDrawable( R.drawable.black_20_round_shape_5))
+
+            bottomSheetDashboardFilterBinding.rlFirstRow2.visibility=View.VISIBLE
+            bottomSheetDashboardFilterBinding.rlFirstRow3.visibility=View.GONE
+
+            bottomSheetDashboardFilterBinding.lltransporterrow1.visibility=View.GONE
+            bottomSheetDashboardFilterBinding.llsenderrow1.visibility=View.VISIBLE
+        }
+        else{
+
+            if(user_type.equals("sender"))
+            {
+                bottomSheetDashboardFilterBinding.cvUsertypeSelection.visibility=View.VISIBLE
+
+                bottomSheetDashboardFilterBinding.tvTranspoter.setTextColor(Color.BLACK)
+                bottomSheetDashboardFilterBinding.tvTranspoter.setBackground(currActivity!!.getDrawable(R.drawable.white_round_shape_5))
+                bottomSheetDashboardFilterBinding.tvSender.setTextColor(Color.parseColor("#888888"))
+                bottomSheetDashboardFilterBinding.tvSender.setBackground(currActivity!!.getDrawable( R.drawable.black_20_round_shape_5))
+
+                bottomSheetDashboardFilterBinding.rlFirstRow2.visibility=View.VISIBLE
+                bottomSheetDashboardFilterBinding.rlFirstRow3.visibility=View.GONE
+
+                bottomSheetDashboardFilterBinding.lltransporterrow1.visibility=View.GONE
+                bottomSheetDashboardFilterBinding.llsenderrow1.visibility=View.VISIBLE
+            }
+            else{
+                bottomSheetDashboardFilterBinding.cvUsertypeSelection.visibility=View.VISIBLE
+
+                bottomSheetDashboardFilterBinding.tvSender.setTextColor(Color.BLACK)
+                bottomSheetDashboardFilterBinding.tvSender.setBackground(currActivity!!.getDrawable(R.drawable.white_round_shape_5))
+                bottomSheetDashboardFilterBinding.tvTranspoter.setTextColor(Color.parseColor("#888888"))
+                bottomSheetDashboardFilterBinding.tvTranspoter.setBackground(currActivity!!.getDrawable( R.drawable.black_20_round_shape_5))
+
+                bottomSheetDashboardFilterBinding.rlFirstRow2.visibility=View.GONE
+                bottomSheetDashboardFilterBinding.rlFirstRow3.visibility=View.VISIBLE
+
+                bottomSheetDashboardFilterBinding.lltransporterrow1.visibility=View.VISIBLE
+                bottomSheetDashboardFilterBinding.llsenderrow1.visibility=View.GONE
+            }
+
+        }
+
+        if (my_bids.equals("true"))
+        {
+            bottomSheetDashboardFilterBinding.tvPublished.setBackground(currActivity!!.getDrawable( R.drawable.grey_round_shape_45_opacity))
+            bottomSheetDashboardFilterBinding.tvOngoing.setBackground(currActivity!!.getDrawable( R.drawable.grey_round_shape_45_opacity))
+            bottomSheetDashboardFilterBinding.tvCompleted.setBackground(currActivity!!.getDrawable( R.drawable.grey_round_shape_45_opacity))
+            bottomSheetDashboardFilterBinding.tvShowonlyMyoffer.setBackground(currActivity!!.getDrawable( R.drawable.blue_round_shape_45_opacity))
+        }
+
 
         if (sort_by.equals("date"))
         {
@@ -601,6 +685,30 @@ class MyListingFragment : Fragment() {
 
             doApiCall()
         })
+
+        bottomSheetDashboardFilterBinding.tvOngoingTranspoter.setOnClickListener({
+            bottomSheetDashboardFilterBinding.tvShowonlyMyoffer.setBackground(currActivity!!.getDrawable( R.drawable.grey_round_shape_45_opacity))
+
+            var filter_pref =pref.getString("filter","")
+
+            if(filter_pref?.contains("Ongoing")==true) {
+                filterarray.remove(JsonPrimitive("Ongoing"))
+                bottomSheetDashboardFilterBinding.tvOngoingTranspoter.setBackground(currActivity!!.getDrawable(R.drawable.grey_round_shape_45_opacity))
+            }
+            else{
+                filterarray.add("Ongoing")
+                bottomSheetDashboardFilterBinding.tvOngoingTranspoter.setBackground(currActivity!!.getDrawable(R.drawable.blue_round_shape_45_opacity))
+            }
+
+            editor.putString("filter",filterarray.toString())
+            editor.putString("my_bids", "false")
+            editor.commit()
+            Log.e("arr",filterarray.toString())
+
+            doApiCall()
+        })
+
+
         bottomSheetDashboardFilterBinding.tvCompleted.setOnClickListener({
             bottomSheetDashboardFilterBinding.tvShowonlyMyoffer.setBackground(currActivity!!.getDrawable( R.drawable.grey_round_shape_45_opacity))
 
@@ -621,6 +729,28 @@ class MyListingFragment : Fragment() {
 
             doApiCall()
         })
+        bottomSheetDashboardFilterBinding.tvCompletedTransporter.setOnClickListener({
+            bottomSheetDashboardFilterBinding.tvShowonlyMyoffer.setBackground(currActivity!!.getDrawable( R.drawable.grey_round_shape_45_opacity))
+
+            var filter_pref =pref.getString("filter","")
+
+            if(filter_pref?.contains("Completed")==true) {
+                filterarray.remove(JsonPrimitive("Completed"))
+                bottomSheetDashboardFilterBinding.tvCompletedTransporter.setBackground(currActivity!!.getDrawable(R.drawable.grey_round_shape_45_opacity))
+            }
+            else{
+                filterarray.add("Completed")
+                bottomSheetDashboardFilterBinding.tvCompletedTransporter.setBackground(currActivity!!.getDrawable(R.drawable.blue_round_shape_45_opacity))
+            }
+            editor.putString("filter",filterarray.toString())
+            editor.putString("my_bids", "false")
+            editor.commit()
+            Log.e("arr",filterarray.toString())
+
+            doApiCall()
+        })
+
+
         bottomSheetDashboardFilterBinding.tvSuspended.setOnClickListener({
 
             var filter_pref =pref.getString("filter","")
@@ -640,6 +770,29 @@ class MyListingFragment : Fragment() {
 
             doApiCall()
         })
+        bottomSheetDashboardFilterBinding.tvSuspendedTransporter.setOnClickListener({
+            bottomSheetDashboardFilterBinding.tvShowonlyMyoffer.setBackground(currActivity!!.getDrawable( R.drawable.grey_round_shape_45_opacity))
+
+            var filter_pref =pref.getString("filter","")
+
+            if(filter_pref?.contains("Suspended")==true) {
+                filterarray.remove(JsonPrimitive("Suspended"))
+                bottomSheetDashboardFilterBinding.tvSuspendedTransporter.setBackground(currActivity!!.getDrawable(R.drawable.grey_round_shape_45_opacity))
+            }
+            else{
+                filterarray.add("Suspended")
+                bottomSheetDashboardFilterBinding.tvSuspendedTransporter.setBackground(currActivity!!.getDrawable(R.drawable.blue_round_shape_45_opacity))
+            }
+
+            editor.putString("filter",filterarray.toString())
+            editor.putString("my_bids", "false")
+            editor.commit()
+            Log.e("arr",filterarray.toString())
+
+            doApiCall()
+        })
+
+
         bottomSheetDashboardFilterBinding.tvExpired.setOnClickListener({
 
             var filter_pref =pref.getString("filter","")
@@ -660,28 +813,94 @@ class MyListingFragment : Fragment() {
         })
 
         bottomSheetDashboardFilterBinding.tvSender.setOnClickListener({
-            bottomSheetDashboardFilterBinding.tvSender.setTextColor(Color.BLACK)
-            bottomSheetDashboardFilterBinding.tvSender.setBackground(currActivity!!.getDrawable(R.drawable.white_round_shape_5))
-            bottomSheetDashboardFilterBinding.tvTranspoter.setTextColor(Color.parseColor("#888888"))
-            bottomSheetDashboardFilterBinding.tvTranspoter.setBackground(currActivity!!.getDrawable( R.drawable.black_20_round_shape_5))
-
-            bottomSheetDashboardFilterBinding.rlFirstRow2.visibility=View.VISIBLE
-            bottomSheetDashboardFilterBinding.rlFirstRow3.visibility=View.GONE
-        })
-        bottomSheetDashboardFilterBinding.tvTranspoter.setOnClickListener({
             bottomSheetDashboardFilterBinding.tvTranspoter.setTextColor(Color.BLACK)
             bottomSheetDashboardFilterBinding.tvTranspoter.setBackground(currActivity!!.getDrawable(R.drawable.white_round_shape_5))
             bottomSheetDashboardFilterBinding.tvSender.setTextColor(Color.parseColor("#888888"))
             bottomSheetDashboardFilterBinding.tvSender.setBackground(currActivity!!.getDrawable( R.drawable.black_20_round_shape_5))
 
+            bottomSheetDashboardFilterBinding.rlFirstRow2.visibility=View.VISIBLE
+            bottomSheetDashboardFilterBinding.rlFirstRow3.visibility=View.GONE
+
+            bottomSheetDashboardFilterBinding.lltransporterrow1.visibility=View.GONE
+            bottomSheetDashboardFilterBinding.llsenderrow1.visibility=View.VISIBLE
+
+            var filter_pref =pref.getString("filter","")
+
+            if(filter_pref?.contains("Published") == true) {
+                bottomSheetDashboardFilterBinding.tvPublished.setBackground(currActivity!!.getDrawable(R.drawable.blue_round_shape_45_opacity))
+            }
+            if (filter_pref?.contains("Expired")== true) {
+                bottomSheetDashboardFilterBinding.tvExpired.setBackground(currActivity!!.getDrawable(R.drawable.blue_round_shape_45_opacity))
+            }
+            if (filter_pref?.contains("Completed")== true) {
+                bottomSheetDashboardFilterBinding.tvCompleted.setBackground(currActivity!!.getDrawable(R.drawable.blue_round_shape_45_opacity))
+            }
+            if (filter_pref?.contains("Suspended")== true){
+                bottomSheetDashboardFilterBinding.tvSuspended.setBackground(currActivity!!.getDrawable(R.drawable.blue_round_shape_45_opacity))
+            }
+            if (filter_pref?.contains("Ongoing")== true) {
+                bottomSheetDashboardFilterBinding.tvOngoing.setBackground(currActivity!!.getDrawable(R.drawable.blue_round_shape_45_opacity))
+            }
+
+
+
+            editor.putString("user_type","sender")
+            editor.putString("my_bids", "false")
+            editor.commit()
+
+            doApiCall()
+        })
+        bottomSheetDashboardFilterBinding.tvTranspoter.setOnClickListener({
+
+            bottomSheetDashboardFilterBinding.tvSender.setTextColor(Color.BLACK)
+            bottomSheetDashboardFilterBinding.tvSender.setBackground(currActivity!!.getDrawable(R.drawable.white_round_shape_5))
+            bottomSheetDashboardFilterBinding.tvTranspoter.setTextColor(Color.parseColor("#888888"))
+            bottomSheetDashboardFilterBinding.tvTranspoter.setBackground(currActivity!!.getDrawable( R.drawable.black_20_round_shape_5))
+
             bottomSheetDashboardFilterBinding.rlFirstRow2.visibility=View.GONE
             bottomSheetDashboardFilterBinding.rlFirstRow3.visibility=View.VISIBLE
+
+            bottomSheetDashboardFilterBinding.lltransporterrow1.visibility=View.VISIBLE
+            bottomSheetDashboardFilterBinding.llsenderrow1.visibility=View.GONE
+
+            var filter_pref =pref.getString("filter","")
+            var my_bids=pref.getString("my_bids","")
+
+            if(my_bids.equals("true"))
+                bottomSheetDashboardFilterBinding.tvShowonlyMyoffer.setBackground(currActivity!!.getDrawable( R.drawable.blue_round_shape_45_opacity))
+            else
+                bottomSheetDashboardFilterBinding.tvShowonlyMyoffer.setBackground(currActivity!!.getDrawable( R.drawable.grey_round_shape_45_opacity))
+
+
+            if (filter_pref?.contains("Completed")== true) {
+                bottomSheetDashboardFilterBinding.tvCompletedTransporter.setBackground(currActivity!!.getDrawable(R.drawable.blue_round_shape_45_opacity))
+            }
+            if (filter_pref?.contains("Suspended")== true){
+                bottomSheetDashboardFilterBinding.tvSuspendedTransporter.setBackground(currActivity!!.getDrawable(R.drawable.blue_round_shape_45_opacity))
+            }
+            if (filter_pref?.contains("Ongoing")== true) {
+                bottomSheetDashboardFilterBinding.tvOngoingTranspoter.setBackground(currActivity!!.getDrawable(R.drawable.blue_round_shape_45_opacity))
+            }
+
+
+
+            if(filter_pref?.contains("Published") == true)
+                filterarray.remove(JsonPrimitive("Published"))
+            if (filter_pref?.contains("Expired")== true)
+                filterarray.remove(JsonPrimitive("Expired"))
+
+            editor.putString("filter",filterarray.toString())
+            editor.putString("user_type","transporter")
+            editor.commit()
+
+            doApiCall()
         })
 
         bottomSheetDashboardFilterBinding.tvShowonlyMyoffer.setOnClickListener({
-            bottomSheetDashboardFilterBinding.tvPublished.setBackground(currActivity!!.getDrawable( R.drawable.grey_round_shape_45_opacity))
-            bottomSheetDashboardFilterBinding.tvOngoing.setBackground(currActivity!!.getDrawable( R.drawable.grey_round_shape_45_opacity))
-            bottomSheetDashboardFilterBinding.tvCompleted.setBackground(currActivity!!.getDrawable( R.drawable.grey_round_shape_45_opacity))
+            bottomSheetDashboardFilterBinding.tvOngoingTranspoter.setBackground(currActivity!!.getDrawable( R.drawable.grey_round_shape_45_opacity))
+            bottomSheetDashboardFilterBinding.tvCompletedTransporter.setBackground(currActivity!!.getDrawable( R.drawable.grey_round_shape_45_opacity))
+            bottomSheetDashboardFilterBinding.tvSuspendedTransporter.setBackground(currActivity!!.getDrawable( R.drawable.grey_round_shape_45_opacity))
+
             bottomSheetDashboardFilterBinding.tvShowonlyMyoffer.setBackground(currActivity!!.getDrawable( R.drawable.blue_round_shape_45_opacity))
 
             filterarray=JsonArray()
@@ -689,9 +908,10 @@ class MyListingFragment : Fragment() {
             editor.putString("my_bids", "true")
             editor.commit()
 
+            doApiCall()
         })
 
-        if (userType.equals("transporter")){
+       /* if (userType.equals("transporter")){
             bottomSheetDashboardFilterBinding.cvUsertypeSelection.visibility=View.VISIBLE
             bottomSheetDashboardFilterBinding.tvSender.setTextColor(Color.BLACK)
             bottomSheetDashboardFilterBinding.tvSender.setBackground(currActivity!!.getDrawable(R.drawable.white_round_shape_5))
@@ -704,7 +924,7 @@ class MyListingFragment : Fragment() {
         else{
             bottomSheetDashboardFilterBinding.cvUsertypeSelection.visibility=View.GONE
 
-        }
+        }*/
 
         bottomSheetApplicationDialog?.show()
 
@@ -714,7 +934,12 @@ class MyListingFragment : Fragment() {
         rvListing.setHasFixedSize(true)
         layoutManager = LinearLayoutManager(currActivity, LinearLayoutManager.VERTICAL,false)
         rvListing.layoutManager = layoutManager
-        adapter = MyListingAdapter(currActivity!!,productList,1)
+        if (userType.equals("sender"))
+        adapter = MyListingAdapter(currActivity!!,productList,1,userType,userType)
+        else{
+            var user_type=pref.getString("user_type","")
+            adapter = MyListingAdapter(currActivity!!,productList,1,userType,user_type.toString())
+        }
         rvListing.adapter = adapter
         rvListing.addOnScrollListener(recyclerScrollListener)
 
@@ -769,6 +994,7 @@ class MyListingFragment : Fragment() {
                 }
 
               userType=it.data.user_type
+
                 setAdapter()
                 adapter.notifyDataSetChanged()
             })

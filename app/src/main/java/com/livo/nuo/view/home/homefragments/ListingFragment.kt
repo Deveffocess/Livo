@@ -32,6 +32,7 @@ import com.livo.nuo.models.ProductDataModel
 import com.livo.nuo.utility.AndroidUtil
 import com.livo.nuo.utility.AppUtils
 import com.livo.nuo.view.home.adapter.ListingAdapter
+import com.livo.nuo.view.home.search.SearchActivity
 import com.livo.nuo.view.notifications.NotificationsActivity
 import com.livo.nuo.viewModel.ViewModelFactory
 import com.livo.nuo.viewModel.products.ProductViewModel
@@ -46,6 +47,7 @@ class ListingFragment : Fragment() {
     private var productList = ArrayList<ProductDataModel>()
     private var productViewModel : ProductViewModel? = null
     lateinit var adapter : ListingAdapter
+    lateinit var rlSearch:RelativeLayout
 
     private var bottomSheetDialog: BottomSheetDialog?=null
     lateinit var rvListing:RecyclerView
@@ -72,6 +74,7 @@ class ListingFragment : Fragment() {
 
         imgFilter=root.findViewById(R.id.imgFilter)
         rvListing=root.findViewById(R.id.rvListing)
+        rlSearch=root.findViewById(R.id.rlSearch)
         imgNotification=root.findViewById(R.id.imgNotification)
 
 
@@ -94,16 +97,6 @@ class ListingFragment : Fragment() {
             ).get(ProductViewModel::class.java)
         }
 
-        productViewModel?.let {
-            if (currActivity.let { ctx -> AndroidUtil.isInternetAvailable(ctx!!) } == true) {
-
-                var jsonObject =  JsonObject();
-                jsonObject.addProperty("longitude", "19.1527096")
-                jsonObject.addProperty("latitude", "72.8611884")
-
-                it.getAllListings(jsonObject)
-            }
-        }
 
 
         imgNotification.setOnClickListener({
@@ -124,9 +117,47 @@ class ListingFragment : Fragment() {
             startActivity(intent, options.toBundle())
         })
 
+        rlSearch.setOnClickListener({
+            val intent = Intent(currActivity!!, SearchActivity::class.java)
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                currActivity!!, rlSearch, ViewCompat.getTransitionName(rlSearch)!!
+            )
+            startActivity(intent, options.toBundle())
+        })
+
+        productViewModel?.let {
+            if (currActivity.let { ctx -> AndroidUtil.isInternetAvailable(ctx!!) } == true) {
+
+                var jsonObject =  JsonObject();
+                jsonObject.addProperty("longitude", "19.1527096")
+                jsonObject.addProperty("latitude", "72.8611884")
+
+                it.getAllListings(jsonObject)
+            }
+        }
 
         setAdapter()
         observers()
+
+    }
+
+    override fun onResume() {
+
+        productViewModel?.let {
+            if (currActivity.let { ctx -> AndroidUtil.isInternetAvailable(ctx!!) } == true) {
+
+                var jsonObject =  JsonObject();
+                jsonObject.addProperty("longitude", "19.1527096")
+                jsonObject.addProperty("latitude", "72.8611884")
+
+                it.getAllListings(jsonObject)
+            }
+        }
+
+        setAdapter()
+        observers()
+
+        super.onResume()
     }
 
 
@@ -222,6 +253,7 @@ class ListingFragment : Fragment() {
                 productList.sortBy{ it.pickup_date }
             }
             adapter.filterData(productList)
+            rvListing.smoothScrollToPosition(0)
 
             bottomSheetDashboardFilterBinding.llLatest.setBackground(currActivity!!.getDrawable(R.drawable.grey_round_shape_45_opacity))
             bottomSheetDashboardFilterBinding.llOldest.setBackground(currActivity!!.getDrawable(R.drawable.blue_round_shape_45_opacity))
@@ -236,6 +268,7 @@ class ListingFragment : Fragment() {
                 productList.sortByDescending{ it.pickup_date }
             }
             adapter.filterData(productList)
+            rvListing.smoothScrollToPosition(0)
 
             bottomSheetDashboardFilterBinding.llOldest.setBackground(currActivity!!.getDrawable(R.drawable.grey_round_shape_45_opacity))
             bottomSheetDashboardFilterBinding.llLatest.setBackground(currActivity!!.getDrawable(R.drawable.blue_round_shape_45_opacity))
@@ -254,6 +287,7 @@ class ListingFragment : Fragment() {
                     productList.sortBy { it.user_distance }
                 }
                 adapter.filterData(productList)
+                rvListing.smoothScrollToPosition(0)
 
                 bottomSheetDashboardFilterBinding.llNearestPickup.setBackground(
                     currActivity!!.getDrawable(
@@ -286,6 +320,7 @@ class ListingFragment : Fragment() {
                     productList.sortByDescending { it.price }
                 }
                 adapter.filterData(productList)
+                rvListing.smoothScrollToPosition(0)
 
                 bottomSheetDashboardFilterBinding.llHighestPrice.setBackground(
                     currActivity!!.getDrawable(
